@@ -1,140 +1,114 @@
-[<!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <title>Questions au hasard</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#0b1220" />
+  <meta charset="utf-8">
+  <title>Questions aléatoires</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #0b1220;
-      color: #e5e7eb;
       font-family: system-ui, sans-serif;
-      padding: 16px;
-    }
-    .app {
-      max-width: 600px;
-      width: 100%;
       background: #111827;
-      border-radius: 16px;
+      color: #e5e7eb;
+      margin: 0;
       padding: 20px;
     }
-    h1 { font-size: 18px; margin: 0 0 8px; }
-    .counter { font-size: 14px; opacity: 0.8; margin-bottom: 12px; }
     .card {
       background: #020617;
+      padding: 20px;
       border-radius: 12px;
-      padding: 16px;
     }
-    .question { font-size: 22px; font-weight: 600; }
+    .question {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
     .answer {
+      margin-top: 12px;
       display: none;
-      margin-top: 10px;
-      border-top: 1px dashed #334155;
+      border-top: 1px dashed #475569;
       padding-top: 10px;
     }
-    .answer.visible { display: block; }
     button {
-      margin-top: 16px;
-      width: 100%;
+      margin-top: 20px;
       padding: 12px;
-      border-radius: 10px;
-      border: none;
-      background: #2563eb;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
+      width: 100%;
+      font-size: 1em;
+    }
+    .counter {
+      margin-bottom: 10px;
+      opacity: .8;
     }
   </style>
 </head>
 
 <body>
-  <div class="app">
-    <h1>Questions au hasard</h1>
-    <div class="counter" id="counter">Questions posées : 0</div>
 
-    <div class="card" id="tapZone">
-      <div class="question" id="question">Chargement…</div>
-      <div class="answer" id="answer"></div>
-    </div>
+<div class="counter" id="counter">Questions posées : 0</div>
 
-    <button id="actionBtn">Commencer</button>
-  </div>
+<div class="card" id="card">
+  <div class="question" id="question">Chargement…</div>
+  <div class="answer" id="answer"></div>
+</div>
+
+<button id="btn">Commencer</button>
 
 <script>
-  let questions = [];
-  let indexCourant = -1;
-  let reponseVisible = false;
-  let compteur = 0;
+let questions = [];
+let indexCourant = -1;
+let reponseVisible = false;
+let compteur = 0;
 
-  const questionEl = document.getElementById("question");
-  const answerEl = document.getElementById("answer");
-  const counterEl = document.getElementById("counter");
-  const btn = document.getElementById("actionBtn");
+const questionEl = document.getElementById("question");
+const answerEl = document.getElementById("answer");
+const btn = document.getElementById("btn");
+const counterEl = document.getElementById("counter");
 
-  fetch("./questions.json")
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Impossible de charger questions.json");
-      }
-      return response.json();
-    })
-    .then(data => {
-      questions = data;
-      questionEl.textContent = "Clique pour commencer";
-    })
-    .catch(err => {
-      questionEl.textContent = "❌ Erreur de chargement des questions";
-      answerEl.textContent = err.message;
-      answerEl.classList.add("visible");
-      console.error(err);
-    });
+fetch("./questions.json")
+  .then(r => {
+    if (!r.ok) throw new Error("questions.json introuvable");
+    return r.json();
+  })
+  .then(data => {
+    questions = data;
+    questionEl.textContent = "Clique sur Commencer";
+  })
+  .catch(err => {
+    questionEl.textContent = "❌ ERREUR";
+    answerEl.style.display = "block";
+    answerEl.textContent = err.message;
+  });
 
-  function nouvelleQuestion() {
-    let i;
-    do {
-      i = Math.floor(Math.random() * questions.length);
-    } while (i === indexCourant && questions.length > 1);
+function nouvelleQuestion() {
+  let i;
+  do {
+    i = Math.floor(Math.random() * questions.length);
+  } while (i === indexCourant && questions.length > 1);
 
-    indexCourant = i;
-    questionEl.textContent = questions[i].question;
-    answerEl.textContent = questions[i].reponse;
-    answerEl.classList.remove("visible");
-    reponseVisible = false;
+  indexCourant = i;
+  questionEl.textContent = questions[i].question;
+  answerEl.textContent = questions[i].reponse;
+  answerEl.style.display = "none";
+  reponseVisible = false;
 
-    compteur++;
-    counterEl.textContent = `Questions posées : ${compteur}`;
-    btn.textContent = "Afficher la réponse";
+  compteur++;
+  counterEl.textContent = "Questions posées : " + compteur;
+  btn.textContent = "Afficher la réponse";
+}
+
+btn.onclick = () => {
+  if (questions.length === 0) return;
+
+  if (indexCourant === -1) {
+    nouvelleQuestion();
+  } else if (!reponseVisible) {
+    answerEl.style.display = "block";
+    reponseVisible = true;
+    btn.textContent = "Question suivante";
+  } else {
+    nouvelleQuestion();
   }
-
-  function action() {
-    if (questions.length === 0) return;
-
-    if (indexCourant === -1) {
-      nouvelleQuestion();
-      return;
-    }
-
-    if (!reponseVisible) {
-      answerEl.classList.add("visible");
-      reponseVisible = true;
-      btn.textContent = "Question suivante";
-    } else {
-      nouvelleQuestion();
-    }
-  }
-
-  btn.addEventListener("click", action);
-  document.getElementById("tapZone").addEventListener("click", action);
-
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
-  }
+};
 </script>
+
 </body>
 </html>
