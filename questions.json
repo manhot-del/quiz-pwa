@@ -1,88 +1,99 @@
 [
     {
-		"question": "cos(pi/6)",
-		"reponse": "√3/2" 
+		"question": "cos(0)",
+		"reponse": "1" 
 	},
     {
-		"question": "cos(pi/4)",
-		"reponse": "√2/2" 
-	},
-    {
-		"question": "cos(pi/3)",
-		"reponse": "1/2" 
-	},
-    {
-		"question": "cos(pi/2)", 
+		"question": "sin(0)",
 		"reponse": "0" 
 	},
     {
-		"question": "sin(pi/6)", 
-		"reponse": "1/2" 
-	},
-    { 
-		"question": "sin(pi/4)", 
-		"reponse": "√2/2" 
-	},
-    { 
-		"question": "sin(pi/3)", 
+		"question": "cos(π/6)",
 		"reponse": "√3/2" 
 	},
-    { 
-		"question": "sin(pi/2)", 
-		"reponse": "0" 
-	},
-    { 
-		"question": "cos(-pi/6)", 
-		"reponse": "√3/2" 
-	},
-    { 
-		"question": "cos(-pi/4)", 
+    {
+		"question": "cos(π/4)",
 		"reponse": "√2/2" 
 	},
     {
-		"question": "cos(-pi/3)", 
+		"question": "cos(π/3)",
+		"reponse": "1/2" 
+	},
+    {
+		"question": "cos(π/2)", 
+		"reponse": "0" 
+	},
+    {
+		"question": "sin(π/6)", 
+		"reponse": "1/2" 
+	},
+    { 
+		"question": "sin(π/4)", 
+		"reponse": "√2/2" 
+	},
+    { 
+		"question": "sin(π/3)", 
+		"reponse": "√3/2" 
+	},
+    { 
+		"question": "sin(π/2)", 
+		"reponse": "1" 
+	},
+    { 
+		"question": "cos(-π/6)", 
+		"reponse": "√3/2" 
+	},
+    { 
+		"question": "cos(-π/4)", 
+		"reponse": "√2/2" 
+	},
+    {
+		"question": "cos(-π/3)", 
 		"reponse": "1/2" },
     {
-		"question": "cos(-pi/2)", 
+		"question": "cos(-π/2)", 
 		"reponse": "0" },
     {
-		"question": "sin(-pi/6)", 
+		"question": "sin(-π/6)", 
 		"reponse": "-1/2" },
     {
-		"question": "sin(-pi/4)", 
+		"question": "sin(-π/4)", 
 		"reponse": "-√2/2" },
     {
-		"question": "sin(-pi/3)", 
+		"question": "sin(-π/3)", 
 		"reponse": "-√3/2" },
     {
-		"question": "sin(-pi/2)", 
+		"question": "sin(-π/2)", 
 		"reponse": "0" },
     {
-		"question": "cos(4pi/6)", 
+		"question": "cos(2π/3)", 
 		"reponse": "-1/2"},
     {
-		"question": "cos(3pi/4)", 
+		"question": "cos(3π/4)", 
 		"reponse": "-√2/2" },
     {
-		"question": "cos(2pi/3)", 
+		"question": "cos(5π/6)", 
 		"reponse": "-√3/2" },
     {
-		"question": "cos(pi)", 
+		"question": "cos(π)", 
 		"reponse": "-1" },
     {
-		"question": "sin(4pi/6)", 
+		"question": "sin(π)", 
+		"reponse": "0" },
+    {
+		"question": "sin(5π/6)", 
 		"reponse": "1/2" },
     {
-		"question": "sin(3pi/4)", 
+		"question": "sin(3π/4)", 
 		"reponse": "√2/2" 
 	},
     {
-		"question": "sin(2pi/3)", 
+		"question": "sin(2π/3)", 
 		"reponse": "√3/2" 
 	},
     {
-		"question": "sin(pi/2)", 
-		"reponse": "0" 
+		"question": "sin(π/2)", 
+		"reponse": "1" 
 	},
     {
 		"question": "a²-b²", 
