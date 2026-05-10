@@ -1,11 +1,11 @@
 [
     {
 		"question": "cos(pi/6)",
-		"reponse": "RAC(3)/2" 
+		"reponse": "√3/2" 
 	},
     {
 		"question": "cos(pi/4)",
-		"reponse": "RAC(2)/2" 
+		"reponse": "√2/2" 
 	},
     {
 		"question": "cos(pi/3)",
@@ -21,11 +21,11 @@
 	},
     { 
 		"question": "sin(pi/4)", 
-		"reponse": "RAC(2)/2" 
+		"reponse": "√2/2" 
 	},
     { 
 		"question": "sin(pi/3)", 
-		"reponse": "RAC(3)/2" 
+		"reponse": "√3/2" 
 	},
     { 
 		"question": "sin(pi/2)", 
@@ -33,11 +33,11 @@
 	},
     { 
 		"question": "cos(-pi/6)", 
-		"reponse": "RAC(3)/2" 
+		"reponse": "√3/2" 
 	},
     { 
 		"question": "cos(-pi/4)", 
-		"reponse": "RAC(2)/2" 
+		"reponse": "√2/2" 
 	},
     {
 		"question": "cos(-pi/3)", 
@@ -50,10 +50,10 @@
 		"reponse": "-1/2" },
     {
 		"question": "sin(-pi/4)", 
-		"reponse": "-RAC(2)/2" },
+		"reponse": "-√2/2" },
     {
 		"question": "sin(-pi/3)", 
-		"reponse": "-RAC(3)/2" },
+		"reponse": "-√3/2" },
     {
 		"question": "sin(-pi/2)", 
 		"reponse": "0" },
@@ -62,10 +62,10 @@
 		"reponse": "-1/2"},
     {
 		"question": "cos(3pi/4)", 
-		"reponse": "-RAC(2)/2" },
+		"reponse": "-√2/2" },
     {
 		"question": "cos(2pi/3)", 
-		"reponse": "-RAC(3)/2" },
+		"reponse": "-√3/2" },
     {
 		"question": "cos(pi)", 
 		"reponse": "-1" },
@@ -74,11 +74,11 @@
 		"reponse": "1/2" },
     {
 		"question": "sin(3pi/4)", 
-		"reponse": "RAC(2)/2" 
+		"reponse": "√2/2" 
 	},
     {
 		"question": "sin(2pi/3)", 
-		"reponse": "RAC(3)/2" 
+		"reponse": "√3/2" 
 	},
     {
 		"question": "sin(pi/2)", 
