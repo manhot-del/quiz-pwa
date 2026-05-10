@@ -1,0 +1,127 @@
+[<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Questions au hasard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0b1220" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #0b1220;
+      color: #e5e7eb;
+      font-family: system-ui, sans-serif;
+      padding: 16px;
+    }
+    .app {
+      max-width: 600px;
+      width: 100%;
+      background: #111827;
+      border-radius: 16px;
+      padding: 20px;
+    }
+    h1 { font-size: 18px; margin: 0 0 8px; }
+    .counter { font-size: 14px; opacity: 0.8; margin-bottom: 12px; }
+    .card {
+      background: #020617;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .question { font-size: 22px; font-weight: 600; }
+    .answer {
+      display: none;
+      margin-top: 10px;
+      border-top: 1px dashed #334155;
+      padding-top: 10px;
+    }
+    .answer.visible { display: block; }
+    button {
+      margin-top: 16px;
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <h1>Questions au hasard</h1>
+    <div class="counter" id="counter">Questions posées : 0</div>
+
+    <div class="card" id="tapZone">
+      <div class="question" id="question">Chargement…</div>
+      <div class="answer" id="answer"></div>
+    </div>
+
+    <button id="actionBtn">Commencer</button>
+  </div>
+
+<script>
+  let questions = [];
+  let indexCourant = -1;
+  let reponseVisible = false;
+  let compteur = 0;
+
+  const questionEl = document.getElementById("question");
+  const answerEl = document.getElementById("answer");
+  const counterEl = document.getElementById("counter");
+  const btn = document.getElementById("actionBtn");
+
+  fetch("questions.json")
+    .then(r => r.json())
+    .then(data => {
+      questions = data;
+      questionEl.textContent = "Clique pour commencer";
+    });
+
+  function nouvelleQuestion() {
+    let i;
+    do {
+      i = Math.floor(Math.random() * questions.length);
+    } while (i === indexCourant && questions.length > 1);
+
+    indexCourant = i;
+    questionEl.textContent = questions[i].question;
+    answerEl.textContent = questions[i].reponse;
+    answerEl.classList.remove("visible");
+    reponseVisible = false;
+
+    compteur++;
+    counterEl.textContent = `Questions posées : ${compteur}`;
+    btn.textContent = "Afficher la réponse";
+  }
+
+  function action() {
+    if (indexCourant === -1) {
+      nouvelleQuestion();
+      return;
+    }
+
+    if (!reponseVisible) {
+      answerEl.classList.add("visible");
+      reponseVisible = true;
+      btn.textContent = "Question suivante";
+    } else {
+      nouvelleQuestion();
+    }
+  }
+
+  btn.addEventListener("click", action);
+  document.getElementById("tapZone").addEventListener("click", action);
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
+</body>
+</html>
