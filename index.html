@@ -77,11 +77,22 @@
   const counterEl = document.getElementById("counter");
   const btn = document.getElementById("actionBtn");
 
-  fetch("questions.json")
-    .then(r => r.json())
+  fetch("./questions.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Impossible de charger questions.json");
+      }
+      return response.json();
+    })
     .then(data => {
       questions = data;
       questionEl.textContent = "Clique pour commencer";
+    })
+    .catch(err => {
+      questionEl.textContent = "❌ Erreur de chargement des questions";
+      answerEl.textContent = err.message;
+      answerEl.classList.add("visible");
+      console.error(err);
     });
 
   function nouvelleQuestion() {
@@ -102,6 +113,8 @@
   }
 
   function action() {
+    if (questions.length === 0) return;
+
     if (indexCourant === -1) {
       nouvelleQuestion();
       return;
@@ -120,7 +133,7 @@
   document.getElementById("tapZone").addEventListener("click", action);
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
+    navigator.serviceWorker.register('./sw.js');
   }
 </script>
 </body>
